@@ -131,7 +131,7 @@ devtool readme
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/devtool-cli.git
+git clone https://github.com/divyani-joshi/devtool-cli.git
 ```
 
 Install dependencies:
