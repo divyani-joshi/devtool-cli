@@ -8,6 +8,8 @@ const createEnv = require("./commands/env");
 const gitCommit = require("./commands/commit");
 const repoInfo = require("./commands/repoInfo");
 const createReadme = require("./commands/readme");
+const organizeFiles = require("./commands/organize");
+const removeEmptyFolders = require("./commands/clean");
 
 const program = new Command();
 
@@ -51,18 +53,14 @@ program
     generateRoute(name);
   });
 
-
-// ENV GENERATOR
-program
+  program
   .command("env")
   .description("Generate .env file")
   .action(() => {
     createEnv();
   });
 
-
-// GIT COMMIT
-program
+  program
   .command("commit")
   .description("Git add, commit and push")
   .argument("<message>")
@@ -70,23 +68,34 @@ program
     gitCommit(message);
   });
 
-
-// REPOSITORY INFO
-program
+  program
   .command("repo-info")
   .description("Show repository information")
   .action(() => {
     repoInfo();
   });
 
-
-// README GENERATOR
-program
+  program
   .command("readme")
   .description("Generate README file")
   .action(() => {
     createReadme();
   });
+
+  program
+  .command("organize")
+  .description("Organize files by type")
+  .argument("<folderPath>")
+  .action((folderPath) => {
+    organizeFiles(folderPath);
+    });
+
+  program
+  .command("clean")
+  .description("Delete empty folders")
+  .action(() => {
+    removeEmptyFolders();
+    });
 
 
 program.parse();
